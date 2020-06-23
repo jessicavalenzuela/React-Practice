@@ -10,9 +10,6 @@ Node.js
 ## Installation 
 To start, `git clone` and then `cd` into the project directory. 
 
-Then you can run it with: 
-```bash 
-npm start 
-```
+Then you can run it with 'npm start'
 
 Navigate to localhost:3000
