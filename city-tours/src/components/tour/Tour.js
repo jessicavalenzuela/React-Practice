@@ -5,6 +5,7 @@ export default class Tour extends Component {
   state = {
     showInfo: false,
   };
+
   handleInfo = () => {
     this.setState({
       showInfo: !this.state.showInfo,
