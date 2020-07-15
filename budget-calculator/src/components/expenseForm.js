@@ -6,6 +6,7 @@ const expenseForm = ({
   handleCharge,
   handleAmount,
   handleSubmit,
+  edit,
 }) => {
   return (
     <form onSubmit={handleSubmit}>
@@ -36,7 +37,7 @@ const expenseForm = ({
         </div>
       </div>
       <button type="submit" className="btn">
-        submit <MdSend className="btn-icon" />
+        {edit ? "edit" : "submit"} <MdSend className="btn-icon" />
       </button>
     </form>
   );
