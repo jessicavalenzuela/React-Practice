@@ -91,6 +91,8 @@ const Wrapper = styled.section`
     h3 {
       margin-bottom: 0;
       letter-spacing: 0;
+      font-weight: bold;
+      color: black;
     }
     p {
       margin-bottom: 0;
