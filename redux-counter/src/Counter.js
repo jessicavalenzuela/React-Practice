@@ -1,29 +1,33 @@
 import React from "react";
+import { connect } from "react-redux";
+import { DECREASE, RESET, INCREASE } from "./actions";
 
-export default function Counter(props) {
-  const amount = props.state.count;
-  const name = props.state.name;
+function Counter(props) {
   const [count, setCount] = React.useState(0);
   return (
     <div className="container">
       <h1>counter</h1>
-      <h2>{name}</h2>
-      <p className="counter">{count}</p>
+      <p className="counter">{props.count}</p>
+      <h2>{props.name}</h2>
       <div className="buttons">
         <button
           type="button"
           className="btn"
-          onClick={() => setCount(count - 1)}
+          onClick={() => props.dispatch({ type: DECREASE })}
         >
           decrease
         </button>
-        <button type="button" className="btn" onClick={() => setCount(0)}>
+        <button
+          type="button"
+          className="btn"
+          onClick={() => props.dispatch({ type: RESET })}
+        >
           reset
         </button>
         <button
           type="button"
           className="btn"
-          onClick={() => setCount(count + 1)}
+          onClick={() => props.dispatch({ type: INCREASE })}
         >
           increase
         </button>
@@ -31,3 +35,10 @@ export default function Counter(props) {
     </div>
   );
 }
+function mapStateToProps(state) {
+  return {
+    count: state.count,
+    name: state.name,
+  };
+}
+export default connect(mapStateToProps)(Counter);

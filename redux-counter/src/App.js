@@ -1,39 +1,30 @@
 import React from "react";
 import Counter from "./Counter";
 import { createStore } from "redux";
+import reducer from "./reducers";
+import { DECREASE, RESET, INCREASE } from "./actions";
+import { Provider } from "react-redux";
 //setup initial state
 const defaultState = {
-  count: 76,
-  name: "bob",
+  count: 21,
+  name: "jessica",
 };
 //setup reducer
-function reducer(state, action) {
-  // console.log({ state, action });
-  // if (action.type === "DECREASE") {
-  //   state.count = state.count - 1;
-  //   return ;
-  // }
-  switch (action.type) {
-    case "DECREASE":
-      return { ...state, count: state.count - 1 };
-    case "INCREASE":
-      return { ...state, count: state.count + 1 };
-    case "RESET":
-      return { ...state, count: 0 };
-  }
 
-  return state;
-}
 //setup store
 const store = createStore(reducer, defaultState);
 
-store.dispatch({ type: "DECREASE" });
-store.dispatch({ type: "INCREASE" });
-store.dispatch({ type: "INCREASE" });
-store.dispatch({ type: "RESET" });
+// store.dispatch({ type: DECREASE });
+// store.dispatch({ type: INCREASE });
+// store.dispatch({ type: INCREASE });
+// store.dispatch({ type: RESET });
 
 const App = () => {
-  return <Counter state={store.getState()} />;
+  return (
+    <Provider store={store}>
+      <Counter />{" "}
+    </Provider>
+  );
 };
 
 export default App;
