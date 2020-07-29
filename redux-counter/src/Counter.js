@@ -2,33 +2,20 @@ import React from "react";
 import { connect } from "react-redux";
 import { DECREASE, RESET, INCREASE } from "./actions";
 
-function Counter(props) {
-  const [count, setCount] = React.useState(0);
+function Counter({ name, count, increase, decrease, reset }) {
   return (
     <div className="container">
       <h1>counter</h1>
-      <p className="counter">{props.count}</p>
-      <h2>{props.name}</h2>
+      <p className="counter">{count}</p>
+      <h2>{name}</h2>
       <div className="buttons">
-        <button
-          type="button"
-          className="btn"
-          onClick={() => props.dispatch({ type: DECREASE })}
-        >
+        <button type="button" className="btn" onClick={decrease}>
           decrease
         </button>
-        <button
-          type="button"
-          className="btn"
-          onClick={() => props.dispatch({ type: RESET })}
-        >
+        <button type="button" className="btn" onClick={reset}>
           reset
         </button>
-        <button
-          type="button"
-          className="btn"
-          onClick={() => props.dispatch({ type: INCREASE })}
-        >
+        <button type="button" className="btn" onClick={increase}>
           increase
         </button>
       </div>
@@ -41,4 +28,12 @@ function mapStateToProps(state) {
     name: state.name,
   };
 }
-export default connect(mapStateToProps)(Counter);
+
+function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    increase: () => dispatch({ type: INCREASE }),
+    decrease: () => dispatch({ type: DECREASE }),
+    reset: () => dispatch({ type: RESET }),
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);

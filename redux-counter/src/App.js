@@ -22,7 +22,7 @@ const store = createStore(reducer, defaultState);
 const App = () => {
   return (
     <Provider store={store}>
-      <Counter />{" "}
+      <Counter random="hi" />
     </Provider>
   );
 };
