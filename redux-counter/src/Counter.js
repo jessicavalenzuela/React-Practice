@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { DECREASE, RESET, INCREASE, MODAL_OPEN } from "./actions";
+import { decrease, increase, reset, modalOpen } from "./actions";
 
-function Counter({ name, count, increase, decrease, reset }) {
+function Counter({ name, count, increase, decrease, reset, modalOpen }) {
   return (
     <div className="container">
       <h1>counter</h1>
@@ -12,7 +12,17 @@ function Counter({ name, count, increase, decrease, reset }) {
         <button type="button" className="btn" onClick={decrease}>
           decrease
         </button>
-        <button type="button" className="btn" onClick={reset}>
+        <button
+          type="button"
+          className="btn"
+          onClick={() => {
+            reset();
+            modalOpen(
+              "jessica",
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim adipisci officiis odit eum magnam dolorum nemo quas fugit dolor? Autem."
+            );
+          }}
+        >
           reset
         </button>
         <button type="button" className="btn" onClick={increase}>
@@ -22,6 +32,12 @@ function Counter({ name, count, increase, decrease, reset }) {
     </div>
   );
 }
+const mapDispatchToProps = {
+  increase,
+  reset,
+  decrease,
+  modalOpen,
+};
 function mapStateToProps({ countState: { count, name } }) {
   return {
     count: count,
@@ -29,21 +45,19 @@ function mapStateToProps({ countState: { count, name } }) {
   };
 }
 
-function mapDispatchToProps(dispatch, ownProps) {
-  return {
-    increase: () => dispatch({ type: INCREASE }),
-    decrease: () => dispatch({ type: DECREASE }),
-    reset: () => {
-      dispatch({ type: RESET });
-      dispatch({
-        type: MODAL_OPEN,
-        payload: {
-          name: "jessica",
-          text:
-            " Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim adipisci officiis odit eum magnam dolorum nemo quas fugit dolor? Autem.",
-        },
-      });
-    },
-  };
-}
+// function mapDispatchToProps(dispatch, ownProps) {
+//   return {
+//     increase: () => dispatch(increase()),
+//     decrease: () => dispatch(decrease()),
+//     reset: () => {
+//       dispatch(reset());
+//       dispatch(
+//         modalOpen(
+//           "jessica",
+//           " Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim adipisci officiis odit eum magnam dolorum nemo quas fugit dolor? Autem."
+//         )
+//       );
+//     },
+//   };
+// }
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);
