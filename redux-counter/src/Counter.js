@@ -6,8 +6,8 @@ function Counter({ name, count, increase, decrease, reset }) {
   return (
     <div className="container">
       <h1>counter</h1>
-      <p className="counter">{count}</p>
       <h2>{name}</h2>
+      <p className="counter">{count}</p>
       <div className="buttons">
         <button type="button" className="btn" onClick={decrease}>
           decrease
@@ -22,10 +22,10 @@ function Counter({ name, count, increase, decrease, reset }) {
     </div>
   );
 }
-function mapStateToProps(state) {
+function mapStateToProps({ countState: { count, name } }) {
   return {
-    count: state.count,
-    name: state.name,
+    count: count,
+    name: name,
   };
 }
 

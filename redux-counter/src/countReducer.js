@@ -1,6 +1,9 @@
 import { DECREASE, RESET, INCREASE } from "./actions";
-
-export default function reducer(state, action) {
+const defaultState = {
+  count: 21,
+  name: "jessica",
+};
+export default function reducer(state = defaultState, action) {
   // console.log({ state, action });
   // if (action.type === "DECREASE") {
   //   state.count = state.count - 1;
