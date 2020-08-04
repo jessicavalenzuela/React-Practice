@@ -38,10 +38,10 @@ export default function ProductProvider({ children }) {
   React.useEffect(() => {
     setLoading(true);
     axios.get(`${url}/products`).then((response) => {
-      // const featured = featuredProducts(flattenProducts(response.data));
-      // const products = flattenProducts(response.data);
+      const featured = featuredProducts(flattenProducts(response.data));
+      const products = flattenProducts(response.data);
       setProducts(products);
-      // setSorted(paginate(products));
+      setSorted(paginate(products));
       setFeatured(featured);
       setLoading(false);
     });
@@ -79,7 +79,7 @@ export default function ProductProvider({ children }) {
 
     setPage(0);
 
-    // setSorted(paginate(newProducts));
+    setSorted(paginate(newProducts));
   }, [filters, products]);
   return (
     <ProductContext.Provider
